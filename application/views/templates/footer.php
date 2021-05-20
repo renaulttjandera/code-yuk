@@ -17,10 +17,6 @@
                         <label for="password-login" class="form-label" required>Password</label>
                         <input type="password" class="form-control" id="password-login" name="password-login">
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="remember-me" name="remember-me">
-                        <label class="form-check-label" for="remember-me">Remember Me</label>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
