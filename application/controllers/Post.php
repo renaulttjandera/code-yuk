@@ -281,4 +281,15 @@ class Post extends CI_Controller {
 		$this->load->view('templates/footer');
     }
 
+    public function error()
+    {
+        $data['title'] = '404 Error';
+        $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+        
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/navbar', $data);
+		$this->load->view('post/404', $data);
+		$this->load->view('templates/footer');
+    }
+
 }
