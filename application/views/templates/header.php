@@ -12,6 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 
+    <link rel="shortcut icon" href="<?= base_url('assets/logo.png
+    '); ?>" type="image/x-icon">
+
     <title><?= $title; ?> | Code, Yuk</title>
   </head>
   <body>
