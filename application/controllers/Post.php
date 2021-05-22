@@ -6,7 +6,11 @@ class Post extends CI_Controller {
 	public function index()
 	{
         $data['title'] = 'Home';
-        $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+        if ($this->session->userdata('email'))
+        {
+
+            $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+        }
         $this->db->order_by('id', 'DESC');
         $data['posts'] = $this->db->get('posts')->result_array();
 		$this->load->view('templates/header', $data);
@@ -107,7 +111,6 @@ class Post extends CI_Controller {
         $password = $this->input->post('password-login');
 
         $user = $this->db->get_where('users', ['email' => $email])->row_array();
-
         if ($user) 
         {
             if (password_verify($password, $user['password']))
@@ -144,7 +147,11 @@ class Post extends CI_Controller {
     {
         if (!$this->session->userdata('email'))
 		{
-			redirect('post');
+			$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Please login first.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>');
+                    redirect('post');
 		}
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('name');
@@ -160,7 +167,11 @@ class Post extends CI_Controller {
     {
         if (!$this->session->userdata('email'))
         {
-            redirect('post');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Please login first.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>');
+                    redirect('post');
         }
         $data['title'] = 'Add Post';
         $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
@@ -180,10 +191,40 @@ class Post extends CI_Controller {
         $title = $this->input->post('title');
         $content = $this->input->post('content');
 
+        $filename = $_FILES['image']['name'];
+		$filesize = $_FILES['image']['size'];
+		$fileerror = $_FILES['image']['error'];
+		$filetmp = $_FILES['image']['tmp_name'];
+		
+		$validfileextensions = ['jpg', 'jpeg', 'png', 'gif'];
+		$fileextension = explode('.', $filename);
+		$fileextension = strtolower(end($fileextension));
+		
+		$newfilename = uniqid();
+		$newfilename = $newfilename . '.';
+		$newfilename = $newfilename . $fileextension;
+		
+		if (!in_array($fileextension, $validfileextensions))
+		{
+			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Please enter an image with the correct extension.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
+            redirect('post/add');
+		} else if ($filesize > 5 * 1024 * 1024)
+		{
+			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Please enter an image with a size below 2 mb.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
+            redirect('post/add');
+		} else {
+            move_uploaded_file($filetmp, 'assets/cover/' . $newfilename);
         $data = array(
             'title' => $title,
             'content' => $content,
             'author' => $this->session->userdata('name'),
+            'image' => $newfilename,
             'date_created' => time()
         );
         $this->db->insert('post-queue', $data);
@@ -193,12 +234,17 @@ class Post extends CI_Controller {
         </div>');
         redirect('post');
     }
+    }
 
     public function admin()
     {
         if (!$this->session->userdata('email') || $this->session->userdata('email') != 'admin@gmail.com')
         {
-            redirect('post');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Please login first.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>');
+                    redirect('post');
         }
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
@@ -213,6 +259,10 @@ class Post extends CI_Controller {
     {
         if (!$this->session->userdata('email') || $this->session->userdata('email') != 'admin@gmail.com')
         {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Please login first.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
             redirect('post');
         }
         $id = $this->input->get('id');
@@ -226,6 +276,7 @@ class Post extends CI_Controller {
         $data = array(
             'title' => $post['title'],
             'content' => $post['content'],
+            'image' => $post['image'],
             'author' => $post['author'],
             'date_created' => $post['date_created']
         );
@@ -251,6 +302,10 @@ class Post extends CI_Controller {
 
         if (!$this->session->userdata('email') || $this->session->userdata('email') != 'admin@gmail.com')
         {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Please login first.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
             redirect('post');
         }
         $this->db->where('id', $id);

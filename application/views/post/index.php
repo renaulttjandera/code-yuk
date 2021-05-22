@@ -13,7 +13,7 @@
         
             <div class="col-md-4 mb-3">
                 <div class="card" style="width: 18rem;">
-                    <img src="<?= base_url('assets/') ?>default-product.png" class="card-img-top">
+                    <img src="<?= base_url('assets/cover/') . $p['image']; ?>" class="card-img-top" width="250" height="250">
                     <div class="card-body">
                         <h5 class="card-title"><?= $p['title']; ?></h5>
                         <p class="card-text"><?= limit_content($p['content'], 100); ?></p>

@@ -13,6 +13,7 @@
       <th>Title</th>
       <th>Content</th>
       <th>Author</th>
+      <th>Cover</th>
       <th>Date Posted</th>
       <th>Action</th>
     </tr>
@@ -25,6 +26,7 @@
         <td><?= $q['title']; ?></td>
         <td><?= wordwrap($q['content'],50,"<br>\n", TRUE); ?></td>
         <td><?= $q['author']; ?></td>
+        <td><img src="<?= base_url('assets/cover/') . $q['image']; ?>" width="50" height="50"></td>
         <td><?= date('D, d M Y', $q['date_created']); ?></td>
         <td>
             <a href="<?= base_url('post/approve?id=') . $q['id']; ?>" class="btn btn-success"><i class="fas fa-check"></i></a>
