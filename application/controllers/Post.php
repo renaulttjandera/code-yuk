@@ -33,7 +33,6 @@ class Post extends CI_Controller {
         $data['title'] = 'Search for ' . $keyword;
         $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
         $this->db->like('title', $keyword);
-        $this->db->like('content', $keyword);
         $data['posts'] = $this->db->get('posts')->result_array();
 
         if (!$keyword)
