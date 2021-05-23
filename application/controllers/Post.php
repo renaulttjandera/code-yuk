@@ -320,6 +320,9 @@ class Post extends CI_Controller {
     {
         $id = $this->input->get('id');
         $data['post'] = $this->db->get_where('posts', ['id' => $id])->row_array();
+        $this->db->order_by('id', 'DESC');
+        $data['comments'] = $this->db->get_where('comments', ['post_id' => $id])->result_array();
+        $data['comments_num'] = $this->db->get_where('comments', ['post_id' => $id])->num_rows();
 
         if (!$data['post'])
         {
@@ -333,6 +336,31 @@ class Post extends CI_Controller {
 		$this->load->view('templates/navbar', $data);
 		$this->load->view('post/details', $data);
 		$this->load->view('templates/footer');
+
+        if ($this->input->post('content'))
+        {
+            if (!$this->session->userdata('email'))
+		    {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Please login first.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>');
+                    redirect('post/details?id=' . $id);
+            }
+            $data = array(
+                'content' => $this->input->post('content'),
+                'sender' => $this->session->userdata('name'),
+                'post_id' => $id,
+                'date_created' => time()
+            );
+    
+            $this->db->insert('comments', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Comment successfully added.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>');
+                    redirect('post/details?id=' . $id);
+        }
     }
 
     public function error()
