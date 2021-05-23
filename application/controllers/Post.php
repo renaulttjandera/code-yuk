@@ -374,4 +374,41 @@ class Post extends CI_Controller {
 		$this->load->view('templates/footer');
     }
 
+    public function profile()
+    {
+        if (!$this->session->userdata('email'))
+        {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Please login first.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>');
+                    redirect('post');
+        }
+        $data['title'] = 'Profile';
+        $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+        $data['post'] = $this->db->get_where('posts', ['author' => $this->session->userdata('name')])->result_array();
+        
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/navbar', $data);
+		$this->load->view('post/profile', $data);
+		$this->load->view('templates/footer');
+    }
+
+    public function delete()
+    {
+        $id = $this->input->get('id');
+
+        if (!$id)
+        {
+            redirect('post/profile');
+        }
+        $this->db->where('id', $id);
+        $this->db->delete('posts');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Post successfully deleted.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>');
+                    redirect('post/profile');
+    }
+
 }

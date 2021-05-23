@@ -14,6 +14,13 @@
 
     <link rel="shortcut icon" href="<?= base_url('assets/logo.png
     '); ?>" type="image/x-icon">
+    <style>
+      @media (max-width: 767.98px) { 
+        .profile { 
+          text-align: center!important;
+          } 
+        }
+    </style>
 
     <title><?= $title; ?> | Code, Yuk</title>
   </head>

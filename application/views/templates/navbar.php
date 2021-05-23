@@ -34,6 +34,8 @@
                     <img src="<?= base_url('assets/') . $user['image']; ?>" class="rounded-circle" width="45">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="<?= base_url('post/profile'); ?>">My Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="<?= base_url('post/logout'); ?>">Logout</a></li>
                 </ul>
             </li>
