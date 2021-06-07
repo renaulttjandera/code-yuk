@@ -22,7 +22,7 @@
 </div>
 
 <h1 class="display-4">My Posts</h1>
-
+<div class="table-responsive">
 <table class="table table-hover mb-5">
   <thead>
     <tr>
@@ -53,5 +53,6 @@
     <?php endforeach; ?>
   </tbody>
 </table>
+</div>
 
 

@@ -6,6 +6,7 @@
         unset($_SESSION['message']);
     }
     ?>
+    <div class="table-responsive">
 <table class="table table-hover mb-5">
   <thead>
     <tr>
@@ -37,4 +38,5 @@
     <?php endforeach; ?>
   </tbody>
 </table>
+</div>
 </div>
