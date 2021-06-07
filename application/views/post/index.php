@@ -16,7 +16,7 @@
                     <img src="<?= base_url('assets/cover/') . $p['image']; ?>" class="card-img-top" width="250" height="250">
                     <div class="card-body">
                         <h5 class="card-title"><?= $p['title']; ?></h5>
-                        <p class="card-text"><?= limit_content($p['content'], 100); ?></p>
+                        <p class="card-text"><?= limit_content(strip_tags($p['content']), 100); ?></p>
                         <a href="<?= base_url('post/details?id=') . $p['id']; ?>" class="btn btn-danger">Read More</a>
                     </div>
                 </div>

@@ -13,8 +13,8 @@
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">Content</label>
-                <textarea class="form-control" id="content" rows="10" name="content" required></textarea>
-            </div>
+                <textarea class="form-control" rows="10" name="content" required></textarea>
+
             <div class="mb-3">
                 <label for="image" class="form-label">Cover Image</label>
                 <input class="form-control" type="file" id="image" name="image" required>
