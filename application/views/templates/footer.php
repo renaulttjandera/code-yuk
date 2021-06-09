@@ -3,18 +3,18 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <h5 class="modal-title text" id="loginModalLabel">Login</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                 <form method="post" action="<?= base_url('post'); ?>">
                     <div class="mb-3">
-                        <label for="email-login" class="form-label">Email address</label>
+                        <label for="email-login" class="form-label text">Email address</label>
                         <input type="email" class="form-control" id="email-login" name="email-login" required>
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="password-login" class="form-label" required>Password</label>
+                        <label for="password-login" class="form-label text" required>Password</label>
                         <input type="password" class="form-control" id="password-login" name="password-login">
                     </div>
                 </div>
@@ -32,26 +32,26 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                    <h5 class="modal-title text" id="registerModalLabel">Register</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                 <form method="post" action="<?= base_url('post'); ?>">
                     <div class="mb-3">
-                        <label for="name-regist" class="form-label">Full Name</label>
+                        <label for="name-regist" class="form-label text">Full Name</label>
                         <input type="text" class="form-control" id="name-regist" name="name-regist">
                     </div>
                     <div class="mb-3">
-                        <label for="email-regist" class="form-label">Email address</label>
+                        <label for="email-regist" class="form-label text">Email address</label>
                         <input type="email" class="form-control" id="email-regist" name="email-regist">
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="password1-regist" class="form-label">Password</label>
+                        <label for="password1-regist" class="form-label text">Password</label>
                         <input type="password" class="form-control" id="password1-regist" name="password1-regist">
                     </div>
                     <div class="mb-3">
-                        <label for="password2-regist" class="form-label">Confirm Password</label>
+                        <label for="password2-regist" class="form-label text">Confirm Password</label>
                         <input type="password" class="form-control" id="password2-regist" name="password2-regist">
                         <div id="passwordHelp" class="form-text">Password should be minimum 8 characters.</div>
                     </div>
@@ -65,9 +65,24 @@
         </div>
     </div>
 
+    <a class="btn-mode"><i class="fas fa-moon"></i></a>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
+<script>
+    const html = document.querySelector('html');
+    const btnMode = document.querySelector('.btn-mode');
+    btnMode.addEventListener('click', function () {
+        if (html.dataset.colorMode == 'light') {
+            html.dataset.colorMode = 'dark';
+            btnMode.innerHTML = '<i class="fas fa-sun">';
+        } else {
+            html.dataset.colorMode = 'light';
+            btnMode.innerHTML = '<i class="fas fa-moon">';
+        }
+    })
+</script>
     
   </body>
 </html>

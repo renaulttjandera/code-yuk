@@ -16,7 +16,7 @@
         <?php endif; ?>
         </ul>
         
-        <form class="d-flex ms-auto" action="<?= base_url('post/search'); ?>" method="get">
+        <form class="d-flex ms-auto search" action="<?= base_url('post/search'); ?>" method="get">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
             <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
         </form>
@@ -29,7 +29,7 @@
                 <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
             </li>
         <?php else: ?>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown profile">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="<?= base_url('assets/') . $user['image']; ?>" class="rounded-circle" width="45">
                 </a>
@@ -39,6 +39,7 @@
                     <li><a class="dropdown-item" href="<?= base_url('post/logout'); ?>">Logout</a></li>
                 </ul>
             </li>
+        
         <?php endif; ?>
         </ul>
         </div>

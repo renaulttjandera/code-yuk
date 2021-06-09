@@ -115,6 +115,7 @@ class Post extends CI_Controller {
             if (password_verify($password, $user['password']))
             {
                     $data = [
+                        'id' => $user['id'],
                         'name' => $user['name'],
                         'email' => $user['email']
                     ];
@@ -222,7 +223,7 @@ class Post extends CI_Controller {
         $data = array(
             'title' => $title,
             'content' => $content,
-            'author' => $this->session->userdata('name'),
+            'author' => $this->session->userdata('id'),
             'image' => $newfilename,
             'date_created' => time()
         );

@@ -7,31 +7,31 @@
     }
     ?>
     <div class="table-responsive">
-<table class="table table-hover mb-5">
+<table class="table table-hover mb-5 table-bordered border-light">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Author</th>
-      <th>Cover</th>
-      <th>Date Posted</th>
-      <th>Action</th>
+      <th scope="col" class="text">#</th>
+      <th class="text">Title</th>
+      <th class="text">Content</th>
+      <th class="text">Author</th>
+      <th class="text">Cover</th>
+      <th class="text">Date Posted</th>
+      <th class="text">Action</th>
     </tr>
   </thead>
   <tbody>
     <?php $i = 1; ?>
     <?php foreach ($queue as $q): ?>
     <tr>
-        <td><?= $i; ?></td>
-        <td><?= $q['title']; ?></td>
-        <td><?= wordwrap($q['content'],50,"<br>\n", TRUE); ?></td>
-        <td><?= $q['author']; ?></td>
+        <td class="text"><?= $i; ?></td>
+        <td class="text"><?= $q['title']; ?></td>
+        <td class="text"><?= wordwrap($q['content'],50,"<br>\n", TRUE); ?></td>
+        <td class="text"><?= $q['author']; ?></td>
         <td><img src="<?= base_url('assets/cover/') . $q['image']; ?>" width="50" height="50"></td>
-        <td><?= date('D, d M Y', $q['date_created']); ?></td>
+        <td class="text"><?= date('D, d M Y', $q['date_created']); ?></td>
         <td>
-            <a href="<?= base_url('post/approve?id=') . $q['id']; ?>" class="btn btn-success"><i class="fas fa-check"></i></a>
-            <a href="<?= base_url('post/reject?id=') . $q['id']; ?>" class="btn btn-danger"><i class="fas fa-times"></i></a>
+            <a href="<?= base_url('post/approve?id=') . $q['id']; ?>" class="btn btn-success mb-3"><i class="fas fa-check"></i></a>
+            <a href="<?= base_url('post/reject?id=') . $q['id']; ?>" class="btn btn-danger mb-3"><i class="fas fa-times"></i></a>
         </td>
     </tr>
     <?php $i++; ?>

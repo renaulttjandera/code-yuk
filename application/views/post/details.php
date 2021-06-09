@@ -6,13 +6,13 @@
         unset($_SESSION['message']);
     }
     ?>
-        <p class="lead"><?= date('D, d M Y', $post['date_created']); ?></p>
-        <h1 class="display-4"><?= $post['title']; ?></h1>
-        <p class="lead">Posted by: <?= $post['author'] ?></p>
-        <p><?= nl2br(wordwrap($post['content'],50,"<br>\n", TRUE)); ?></p>
+        <p class="lead text"><?= date('D, d M Y', $post['date_created']); ?></p>
+        <h1 class="display-4 text"><?= $post['title']; ?></h1>
+        <p class="lead text">Posted by: <?= $post['author'] ?></p>
+        <p class="text"><?= nl2br(wordwrap($post['content'],50,"<br>\n", TRUE)); ?></p>
         <a href="<?= base_url('post'); ?>" class="btn btn-danger mb-5">Back</a>
 
-        <h3>Comments: <?= $comments_num; ?></h3>
+        <h3 class="text">Comments: <?= $comments_num; ?></h3>
         <form action="" method="post">
             <div class="mb-3">
                 <textarea class="form-control" id="content" rows="3" name="content" style="width: 16rem;" required></textarea>
