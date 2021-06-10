@@ -223,7 +223,7 @@ class Post extends CI_Controller {
         $data = array(
             'title' => $title,
             'content' => $content,
-            'author' => $this->session->userdata('id'),
+            'author' => $this->session->userdata('name'),
             'image' => $newfilename,
             'date_created' => time()
         );
@@ -249,6 +249,7 @@ class Post extends CI_Controller {
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
         $data['queue'] = $this->db->get('post-queue')->result_array();
+        $data['users'] = $this->db->get('users')->result_array();
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/navbar', $data);
 		$this->load->view('post/admin', $data);
