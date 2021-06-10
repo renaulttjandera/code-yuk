@@ -71,15 +71,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
 <script>
-    const html = document.querySelector('html');
+    let darkMode = localStorage.getItem('darkMode');
     const btnMode = document.querySelector('.btn-mode');
+
+    function enableDarkMode () {
+        document.body.classList.add('darkmode');
+        btnMode.innerHTML = '<i class="fas fa-sun">';
+        localStorage.setItem('darkMode', 'enabled');
+    }
+
+    function disableDarkMode () {
+        document.body.classList.remove('darkmode');
+        btnMode.innerHTML = '<i class="fas fa-moon">';
+        localStorage.setItem('darkMode', 'disabled');
+    }
+
+    if (darkMode === 'enabled') {
+        enableDarkMode();
+    }
+
     btnMode.addEventListener('click', function () {
-        if (html.dataset.colorMode == 'light') {
-            html.dataset.colorMode = 'dark';
-            btnMode.innerHTML = '<i class="fas fa-sun">';
+        darkMode = localStorage.getItem('darkMode');
+        if (darkMode !== 'enabled') {
+            enableDarkMode();
         } else {
-            html.dataset.colorMode = 'light';
-            btnMode.innerHTML = '<i class="fas fa-moon">';
+            disableDarkMode();
         }
     })
 </script>

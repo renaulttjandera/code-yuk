@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-color-mode="light">
+<html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
         --green-color: #28a745;
       }
 
-      html[data-color-mode = 'dark'] {
+      .darkmode {
         --main-color: #3b3b3b;
         --accent-color: #1a1a1a;
         --text-color: #f7f7f7;
@@ -62,16 +62,16 @@
 
       .btn-mode {
         position: fixed;
-    bottom: 35px;
-    right: 35px; 
-    width: 80px;
-    height: 80px;
-    background-color: var(--text-color);
-    border-radius: 50%;
-    text-align: center;
-    color: var(--accent-color);
-    line-height: 4.8rem;
-    font-size: 30px;
+        bottom: 35px;
+        right: 35px; 
+        width: 80px;
+        height: 80px;
+        background-color: var(--text-color);
+        border-radius: 50%;
+        text-align: center;
+        color: var(--accent-color);
+        line-height: 4.8rem;
+        font-size: 30px;
       }
 
       .btn-mode:hover {
