@@ -29,7 +29,7 @@
                 <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
             </li>
         <?php else: ?>
-            <li class="nav-item dropdown profile">
+            <li class="nav-item dropdown profile-pict">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="<?= base_url('assets/') . $user['image']; ?>" class="rounded-circle" width="45">
                 </a>
